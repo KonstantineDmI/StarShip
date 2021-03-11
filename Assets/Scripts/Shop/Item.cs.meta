@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 470f775f900c999428582668075080dd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - buyMenu: {instanceID: 0}
+  - itemText: {instanceID: 0}
+  - checkMark: {fileID: 1421116541169010934, guid: 5b806eb8e6b6e7a489abc004970e19a2,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
