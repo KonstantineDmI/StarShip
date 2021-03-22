@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     public int enemyDamage;
     public float speed;
 
-    private GameObject player;
+    private GameObject _player;
 
     public GameObject bullet;
     public GameObject enemyDestroy;
@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
     private Vector3 _thisPos;
     private float _angle;
 
+    private float _randSpawn;
+
 
 
     void Start()
@@ -28,8 +30,10 @@ public class Enemy : MonoBehaviour
         enemyHP = 100;
         speed = Random.Range(1f, 10f);
         this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        player = SpawnPlayer.currentShip;
+        _player = SpawnPlayer.currentShip;
+        _randSpawn = Random.Range(0.8f, 2f);
         StartCoroutine(Shooting());
+        
     }
 
     public Enemy()
@@ -39,9 +43,9 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (player.gameObject != null)
+        if (_player.gameObject != null)
         {
-            _targetPos = player.transform.position;
+            _targetPos = _player.transform.position;
             _thisPos = transform.position;
             _targetPos.x -= _thisPos.x;
             _targetPos.y -= _thisPos.y;
@@ -89,8 +93,10 @@ public class Enemy : MonoBehaviour
         while (true)
         {
             
-            yield return new WaitForSeconds(2f);
-            Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);   
+                yield return new WaitForSeconds(_randSpawn);
+                Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            
+            
         }
         
     }

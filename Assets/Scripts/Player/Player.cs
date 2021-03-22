@@ -15,21 +15,20 @@ public class Player : MonoBehaviour
     public Text label;
     public static bool shootingTimerOn;
 
-    private float _shootingTimer = 15f;
-    private float _currentShootingTimer;
-
     public static bool gameOver = false;
-
     public  GameObject gameOverPanel;
     public ParticleSystem shootParticle;
 
+    private float _shootingTimer = 15f;
+    private float _currentShootingTimer;
     private GameObject _leftGun, _rightGun, _centralGun;
+
+
 
     void Start()
     {
         
         bullet.gameObject.GetComponent<Bullet>().advanced = false;
-        
         currentHealth = maxHeatlh;
         healthBar.SetMaxHealth(maxHeatlh);
         healthBar.SetMaxHealth(currentHealth);
@@ -52,7 +51,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-       
 
         Vector3 textPos = Camera.main.WorldToScreenPoint(this.transform.position);
         label.transform.position = textPos;
@@ -92,7 +90,7 @@ public class Player : MonoBehaviour
     {
         if(currentHealth <= 0)
         {
-            Time.timeScale = 0;
+            Destroy(gameObject);
             gameOverPanel.SetActive(true);
         }
     }
@@ -118,27 +116,42 @@ public class Player : MonoBehaviour
 
         while (true)
         {
-            if (_leftGun != null && _rightGun != null && bullet.GetComponent<Bullet>().advanced == true && shootingTimerOn == true)
+            if (_leftGun != null && _rightGun != null)
             {
-                bullet.GetComponent<Bullet>().speed = 40f;
-                Instantiate(bullet, new Vector3(_centralGun.transform.position.x, _centralGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
-                Instantiate(bullet, new Vector3(_rightGun.transform.position.x, _rightGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
-                Instantiate(bullet, new Vector3(_leftGun.transform.position.x, _leftGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
-                yield return new WaitForSeconds(0.2f);
+                if(bullet.GetComponent<Bullet>().advanced == true && shootingTimerOn == true)
+                {
+                    Instantiate(shootParticle, new Vector3(_centralGun.transform.position.x, _centralGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
+                    Instantiate(shootParticle, new Vector3(_leftGun.transform.position.x, _leftGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
+                    Instantiate(shootParticle, new Vector3(_rightGun.transform.position.x, _rightGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
+                    bullet.GetComponent<Bullet>().speed = 40f;
+                    Instantiate(bullet, new Vector3(_centralGun.transform.position.x, _centralGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
+                    Instantiate(bullet, new Vector3(_rightGun.transform.position.x, _rightGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
+                    Instantiate(bullet, new Vector3(_leftGun.transform.position.x, _leftGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
+                    yield return new WaitForSeconds(0.2f);
+                }
+
+                else
+                {
+                    Instantiate(shootParticle, new Vector3(_centralGun.transform.position.x, _centralGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
+                    Instantiate(shootParticle, new Vector3(_leftGun.transform.position.x, _leftGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
+                    Instantiate(shootParticle, new Vector3(_rightGun.transform.position.x, _rightGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
+                    bullet.GetComponent<Bullet>().speed = 10f;
+                    Instantiate(bullet, new Vector3(_centralGun.transform.position.x, _centralGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
+                    Instantiate(bullet, new Vector3(_rightGun.transform.position.x, _rightGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
+                    Instantiate(bullet, new Vector3(_leftGun.transform.position.x, _leftGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
+                    yield return new WaitForSeconds(0.5f);
+                    
+                }
+               
             }
-            else if(_leftGun != null && _rightGun != null && bullet.GetComponent<Bullet>().advanced == false)
-            {
-                Instantiate(bullet, new Vector3(_centralGun.transform.position.x, _centralGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
-                Instantiate(bullet, new Vector3(_rightGun.transform.position.x, _rightGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
-                Instantiate(bullet, new Vector3(_leftGun.transform.position.x, _leftGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
-                yield return new WaitForSeconds(0.5f);
-            }
+            
             else
             {
                 if (bullet.gameObject.GetComponent<Bullet>().advanced == true && shootingTimerOn == true)
                 {
 
-                    shootParticle.Play();
+
+                    Instantiate(shootParticle, new Vector3(_centralGun.transform.position.x, _centralGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
                     Instantiate(bullet, new Vector3(this.transform.position.x, this.transform.position.y), Quaternion.Euler(0f, 0f, -20f));
                     Instantiate(bullet, new Vector3(this.transform.position.x, this.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
                     Instantiate(bullet, new Vector3(this.transform.position.x, this.transform.position.y), Quaternion.Euler(0f, 0f, 20f));
@@ -146,7 +159,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    shootParticle.Play();
+                    Instantiate(shootParticle, new Vector3(_centralGun.transform.position.x, _centralGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
                     Instantiate(bullet, new Vector3(_centralGun.transform.position.x, _centralGun.transform.position.y), Quaternion.Euler(0f, 0f, 0f));
                     yield return new WaitForSeconds(0.5f);
 

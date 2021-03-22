@@ -28,15 +28,16 @@ public class AsteroidsManager : MonoBehaviour
 
     IEnumerator AsteroidTime()
     {
-        
-        yield return new WaitForSeconds(Random.Range(5f, 15f));
-        _alert.SetActive(true);
-        _alert.GetComponent<AlertPanel>().Animate("Meteorites are coming!");
-        yield return new WaitForSeconds(5f);
-        _alert.SetActive(false);
-        asteroidTime = true;
-        StartCoroutine(Spawn());
-        
+        if(SpawnPlayer.currentShip != null)
+        {
+            yield return new WaitForSeconds(Random.Range(60f, 120f));
+            _alert.SetActive(true);
+            _alert.GetComponent<AlertPanel>().Animate("Meteorites are coming!");
+            yield return new WaitForSeconds(5f);
+            _alert.SetActive(false);
+            asteroidTime = true;
+            StartCoroutine(Spawn());
+        } 
     }
 
     IEnumerator AsteroidTimeCheck()

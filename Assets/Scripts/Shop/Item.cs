@@ -13,6 +13,7 @@ public class Item : MonoBehaviour
     public static  GameObject currentItem;
     public GameObject checkMark;
     public static GameObject selectedItem;
+    private Sprite _sprite;
     public void OnClick()
     {
         if(transform.GetChild(2).gameObject.activeSelf == true)

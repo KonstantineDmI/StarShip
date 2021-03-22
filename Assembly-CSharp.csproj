@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\Player\Bullet.cs" />
     <Compile Include="Assets\Scripts\FPS.cs" />
     <Compile Include="Assets\Scripts\BonusSystem\HealBox.cs" />
+    <Compile Include="Assets\Scripts\JoyStick.cs" />
     <Compile Include="Assets\Scripts\ButtonScripts\StartGame.cs" />
     <Compile Include="Assets\Scripts\Data\GameObjectsList.cs" />
     <Compile Include="Assets\Scripts\DirectMoving.cs" />
@@ -73,6 +74,8 @@
     <Compile Include="Assets\Scripts\BonusSystem\SpawnBonus.cs" />
     <Compile Include="Assets\Scripts\Shop\ShopDataBase.cs" />
     <Compile Include="Assets\Scripts\ButtonScripts\PauseResume.cs" />
+    <Compile Include="Assets\Scripts\Destroy\Destroy.cs" />
+    <Compile Include="Assets\Scripts\Data\ImagesList.cs" />
     <Compile Include="Assets\Scripts\Planets.cs" />
     <Compile Include="Assets\Scripts\Shop\Item.cs" />
     <Compile Include="Assets\Scripts\Player\HealthSystem.cs" />
@@ -108,6 +111,8 @@
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Data\ShipsList.cs" />
     <Compile Include="Assets\Scripts\Borderd\Removable.cs" />
+    <Compile Include="Assets\Scripts\JoystickMode.cs" />
+    <Compile Include="Assets\Scripts\GOScript.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\LICENSE.txt" />

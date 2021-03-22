@@ -33,8 +33,8 @@ public class SpawnPlayer : MonoBehaviour
             }
         }
 
-        
-        
+
+        Debug.Log(currentShip.name);
 
     }
 

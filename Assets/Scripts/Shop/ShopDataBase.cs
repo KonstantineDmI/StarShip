@@ -89,18 +89,20 @@ public class ShopDataBase : MonoBehaviour
 
             item.transform.GetChild(0).GetComponentInChildren<Ship>().shipGo = ShipsList.instance.allShips[counter].gameObject;
             IsLocked();
-            GameObject go = (GameObject)Instantiate(item, content.transform, false);
-            GameObject image = item.transform.GetChild(0).GetChild(1).gameObject;
-
+            GameObject _go = (GameObject)Instantiate(item, content.transform, false);
+            GameObject _goImage = _go.transform.GetChild(0).GetChild(1).gameObject;
+            _goImage.GetComponent<Image>().sprite = Resources.Load(name.text, typeof(Sprite)) as Sprite;
+            Debug.Log(name.text);
             if (name.text == selectedShipName)
             {
-                ObjectsList.instance.allObjects[3].transform.SetParent(go.transform);
-                ObjectsList.instance.allObjects[3].transform.position = new Vector3(go.transform.position.x - 100, go.transform.position.y - 15, go.transform.position.z);
+    
+                ObjectsList.instance.allObjects[3].transform.SetParent(_go.transform);
+                ObjectsList.instance.allObjects[3].transform.position = new Vector3(_go.transform.position.x - 100, _go.transform.position.y - 15, _go.transform.position.z);
             }
 
 
 
-            //image.GetComponent<Image>().sprite = Resources.Load<Sprite>("ship");
+            
             counter++;
         }
         _connection.Close();

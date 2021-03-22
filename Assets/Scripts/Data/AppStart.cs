@@ -37,6 +37,8 @@ public class AppStart : MonoBehaviour
         coinBalance.text = "Your balance: " + balance;
     }
 
+
+
     
 
     public void connections()
@@ -91,8 +93,7 @@ public class AppStart : MonoBehaviour
         Balance();
         item = new Item();
         shopDB = new ShopDataBase();
-
-
+        Debug.Log(SpawnPlayer.shipName);
     }
 
     void BestScore()
@@ -102,7 +103,7 @@ public class AppStart : MonoBehaviour
         _sqlQuery = "SELECT * FROM ScoreTable ORDER BY (Score) DESC";
         _dbcmd.CommandText = _sqlQuery;
         _reader = _dbcmd.ExecuteReader();
-        bestScore.text = "Best score " + _reader[0].ToString();
+        bestScore.text = _reader[0].ToString();
         _connection.Close();
     }
 
@@ -113,7 +114,7 @@ public class AppStart : MonoBehaviour
         string sqlQuery = "SELECT * FROM CoinsTable";
         dbcmd.CommandText = sqlQuery;
         IDataReader reader = dbcmd.ExecuteReader();
-        coinBalance.text = "Your balance: " + reader[0].ToString();
+        coinBalance.text = reader[0].ToString();
         balForShop = Convert.ToInt32(reader[0]);
         _connection.Close();
     }
@@ -127,7 +128,7 @@ public class AppStart : MonoBehaviour
         _reader = _dbcmd.ExecuteReader();
         while (_reader.Read())
         {
-            lastScore.text = "Last score: " + _reader[0].ToString();
+            lastScore.text = _reader[0].ToString();
         }
         _connection.Close();
     }

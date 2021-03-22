@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
+using UnityEngine.SceneManagement;
 
 public class ContinueGame : MonoBehaviour, IUnityAdsListener
 {
@@ -24,7 +25,6 @@ public class ContinueGame : MonoBehaviour, IUnityAdsListener
 
     public void ShowRewardedVideo()
     {
-        // Check if UnityAds ready before calling Show method:
         if (Advertisement.IsReady(_myPlacementId))
         {
             Advertisement.Show(_myPlacementId);
@@ -34,16 +34,18 @@ public class ContinueGame : MonoBehaviour, IUnityAdsListener
             Debug.Log("Rewarded video is not ready at the moment! Please try again later!");
         }
     }
-
-    // Implement IUnityAdsListener interface methods:
     public void OnUnityAdsDidFinish(string surfacingId, ShowResult showResult)
     {
         // Define conditional logic for each ad completion status:
         if (showResult == ShowResult.Finished)
         {
-            Time.timeScale = 1;
-            SpawnPlayer.currentShip.gameObject.GetComponent<Player>().Heal(100);
-            gameoverPanel.SetActive(false);
+            AppStart start = new AppStart();
+            //Time.timeScale = 1;
+            //SpawnPlayer.currentShip.gameObject.GetComponent<Player>().Heal(100);
+            //gameoverPanel.SetActive(false);
+            DBUpdate.sessionCoinQuantity *= 2;
+            start.DataAdding();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
             Debug.Log("finished");
         }
         else if (showResult == ShowResult.Skipped)

@@ -8,7 +8,12 @@ public class WeaponBox : MonoBehaviour
     private float  _speed = 2f;
 
     public GameObject bullet;
-    
+
+    void Start()
+    {
+        bullet = SpawnPlayer.currentShip.GetComponent<Player>().bullet;
+    }
+
 
     void Update()
     {

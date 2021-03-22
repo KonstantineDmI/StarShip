@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyOnScreen : MonoBehaviour
 {
-    public GameObject enemy;
+    [SerializeField]
+    private GameObject _enemy;
 
     void Update()
     {
@@ -12,7 +13,8 @@ public class EnemyOnScreen : MonoBehaviour
 
         if (entity.Length < 4 && CountDown.timerOn == false && AsteroidsManager.asteroidTime == false)
         {
-            Instantiate(enemy, new Vector2(Random.Range(-2.71f, 2.71f), 5.9f), Quaternion.Euler(0f, 0f, 0f));
+            
+            Instantiate(_enemy, new Vector2(Random.Range(-2.71f, 2.71f), 5.9f), Quaternion.Euler(0f, 0f, 0f));
         }
         
         
